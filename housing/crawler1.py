@@ -222,7 +222,7 @@ def parseDataIds(data_ids):
 while True:
 	soup = BeautifulSoup(response)
 
-	divs = soup.findAll('div', {'class' : 'list-card-item'})
+	divs = soup.findAll('div', {'class' : 'list-resale'})
 
 	if not len(divs) == 0:
 
