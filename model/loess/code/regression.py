@@ -18,7 +18,7 @@ def weightF(x):
 		return (1 - x**2)**2
 
 
-with open('data/working.csv') as f:
+with open('../data/working.csv') as f:
 	header = f.readline() # take care the the newline character
 	header += ',x_coor,y_coor,z_coor'
 

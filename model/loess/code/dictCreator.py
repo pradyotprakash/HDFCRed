@@ -16,4 +16,4 @@ def creator(currentAttribute = 'apartment_type'):
 			d[value] = str(current)
 			current += 1
 
-	return d
+	return d	
