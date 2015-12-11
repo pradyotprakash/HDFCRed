@@ -48,4 +48,9 @@ for row in f:
 		index = attributeIndex[attribute]
 		row[index] = attributeMap[attribute][row[index]]
 
+	# special case for number_of_lifts
+	indexOfLifts = header.index('number_of_lifts')
+	if row[indexOfLifts] == 'None':
+		row[indexOfLifts] = 0
+
 	g.writerow(row)

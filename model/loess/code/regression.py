@@ -1,63 +1,62 @@
 import csv, pprint, math
+import numpy as np
+from numpy.linalg import inv
 
-R = float(6371000.0)
-
-class Data:
-	def __init__(self, l):
-		self.data = l
+r = 1000.0
 
 trainingData = {}
 header = []
-testData = []
+testData = ['-4606720.347024485','-3911087.669195922','2017712.0429273888','4500000','Mumbai','Mulund East','10000','4','3','0','3','0','450','1','1','0','0','0','1','0','0','0','0','0']
 
-def weightF(x):
-	x = math.abs(x)
+def weightF(p, q):
+	p = map(float, p)
+	q = map(float, q)
+
+	x = 0.0
+	for i in range(len(p)):
+		x += (p[i] - q[i])**2
+
+	x = math.sqrt(x)/r
+	
 	if x > 1:
 		return 0.0
 	else:
 		return (1 - x**2)**2
 
-
 with open('../data/working.csv') as f:
-	header = f.readline() # take care the the newline character
-	header += ',x_coor,y_coor,z_coor'
-
+	
 	f = csv.reader(f)
-		
+	header = next(f)	
+
+	indexOfLocality = header.index('locality')
+
 	for row in f:
-		locality = row[3]
-		lat = float(row[0])
-		lon = float(row[1])
-		
-		x = R * math.cos(lat) * math.cos(lon)
-		y = R * math.cos(lat) * math.sin(lon)
-		z = R * math.sin(lat)
+		locality = row[indexOfLocality]
 
-		row.append(x)
-		row.append(y)
-		row.append(z)
+		if locality in trainingData:
+			trainingData[locality].append(row)
+		else:
+			trainingData[locality] = [row]
 
-		todayDate = datetime.datetime.now().date()
-		oneYearBack = todayDate - datetime.timedelta(days=365)
-		dateAdded = row[8]
-		
-		dateAdded = datetime.date(int(dateAdded[:4]), int(dateAdded[5:7], int(dateAdded[8:10])))
-		row[8] = dateAdded
+localData = trainingData[testData[indexOfLocality]]
 
-		del row[1] # remove latitude
-		del row[0] # remove longitude
+# local regression begins here
 
-		if oneYearBack < dateAdded < todayDate:
-			if locality in trainingData:
-				trainingData[locality].append(row)
-			else:
-				trainingData[locality] = [row]
+indexOfPrice = header.index('price')
+Y = []
+W = []
+X = []
 
+for row in localData:
+	Y.append([float(row[indexOfPrice])])
+	W.append(weightF(row[0:3], testData[0:3]))
+	X.append(map(float, row[6:]))
 
+Y = np.matrix(Y)
+X = np.matrix(X)
+W = np.diag(W)
 
-# begin application of local regression below
+X_transpose = X.transpose()
 
-from scipy.linalg import expm
-import numpy as np
-a = np.array()
-
+beta = inv(X_transpose * W * X) * X_transpose * W * Y
+print beta
