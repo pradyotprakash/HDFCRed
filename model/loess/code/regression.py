@@ -1,12 +1,14 @@
 import csv, pprint, math
 import numpy as np
-from numpy.linalg import inv
+from numpy.linalg import inv, det, solve
 
-r = 1000.0
+np.set_printoptions(threshold=np.nan)
+
+r = 1.0
+delta = 1.0
 
 trainingData = {}
 header = []
-testData = ['-4606720.347024485','-3911087.669195922','2017712.0429273888','4500000','Mumbai','Mulund East','10000','4','3','0','3','0','450','1','1','0','0','0','1','0','0','0','0','0']
 
 def weightF(p, q):
 	p = map(float, p)
@@ -14,14 +16,17 @@ def weightF(p, q):
 
 	x = 0.0
 	for i in range(len(p)):
-		x += (p[i] - q[i])**2
+		x += ((p[i]) - (q[i]))**2
 
-	x = math.sqrt(x)/r
+	x = math.sqrt(x)
+	x = x/r
 	
 	if x > 1:
 		return 0.0
 	else:
 		return (1 - x**2)**2
+indexOfLocality = ''
+indexOfPrice = ''
 
 with open('../data/working.csv') as f:
 	
@@ -29,6 +34,7 @@ with open('../data/working.csv') as f:
 	header = next(f)	
 
 	indexOfLocality = header.index('locality')
+	indexOfPrice = header.index('price')
 
 	for row in f:
 		locality = row[indexOfLocality]
@@ -38,25 +44,37 @@ with open('../data/working.csv') as f:
 		else:
 			trainingData[locality] = [row]
 
-localData = trainingData[testData[indexOfLocality]]
+def fitModel(testData = ['1778.8039396552','5756.1558987142','2071.7545255086','16800000','Mumbai','Agripada','26880','7','4','0','12','7','625','1','1','0','0','1','0','0','0','0','1','2']):
+	localData = trainingData[testData[indexOfLocality]]
 
-# local regression begins here
+	Y = []
+	W = []
+	X = []
 
-indexOfPrice = header.index('price')
-Y = []
-W = []
-X = []
+	for row in localData:
+		Y.append([float(row[indexOfPrice])])
+		W.append(weightF(row[0:3], testData[0:3]))
+		X.append(map(float, row[6:]))
 
-for row in localData:
-	Y.append([float(row[indexOfPrice])])
-	W.append(weightF(row[0:3], testData[0:3]))
-	X.append(map(float, row[6:]))
+	Y = np.matrix(Y)
+	X = np.matrix(X)
+	W = np.diag(W)
+	I = np.eye(X.shape[1])
+	X_transpose = X.transpose()
 
-Y = np.matrix(Y)
-X = np.matrix(X)
-W = np.diag(W)
+	beta = inv(X_transpose * W * X + delta*I) * X_transpose * W * Y
+	phi_x = np.matrix(map(float, testData[6:]))
 
-X_transpose = X.transpose()
+	return float(phi_x * beta)
 
-beta = inv(X_transpose * W * X) * X_transpose * W * Y
-print beta
+def testModel():
+	count = 0
+	with open('../data/working.csv', 'r') as f:
+		f = csv.reader(f)
+		next(f) # skip the header
+
+		for row in f:
+			price = float(row[indexOfPrice])
+			print (fitModel(row) - price)/price
+
+testModel()

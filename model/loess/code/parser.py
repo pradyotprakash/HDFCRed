@@ -1,7 +1,7 @@
 import csv, math, datetime
 from dictCreator import creator
 
-R = float(6371000.0)
+R = float(6371.0)
 
 attributeList = ['apartment_type', 'security_type', 'power_backup_type', 'main_entrance_facing']
 
@@ -30,8 +30,8 @@ for row in f:
 	if not previousYear <= dateAddedParsed <= todayDate or not row[9] == 'Apartment':
 		continue
 
-	lat = float(row[1])
-	lon = float(row[2])
+	lat = float(row[1])*(math.pi/180.0)
+	lon = float(row[2])*(math.pi/180.0)
 	
 	x = R * math.cos(lat) * math.cos(lon)
 	y = R * math.cos(lat) * math.sin(lon)
