@@ -63,7 +63,7 @@ def fitModel(testData = ['1778.8039396552','5756.1558987142','2071.7545255086','
 
 	beta = inv(X_transpose * W * X + delta*I) * X_transpose * W * Y
 	phi_x = np.matrix(map(float, testData[6:]))
-
+	print beta.tolist()
 	return float(phi_x * beta)
 
 def testModel():
@@ -72,7 +72,7 @@ def testModel():
 		price = float(row[indexOfPrice])
 		try:
 			val = 100*(fitModel(row) - price)/price
-			print val
+			# print val
 		except Exception as e:
 			error_file.write('Error in date item: ' + str(row) + '\n')
 
