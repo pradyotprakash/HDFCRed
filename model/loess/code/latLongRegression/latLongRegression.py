@@ -30,7 +30,7 @@ def weightF(p, q):
 indexOfLocality = ''
 indexOfPrice = ''
 
-with open('../data/working.csv') as f:
+with open('../../data/working.csv') as f:
 
 	f = csv.reader(f)
 	header = next(f)	
@@ -68,16 +68,12 @@ def fitModel(testData = ['1778.8039396552','5756.1558987142','2071.7545255086','
 
 def testModel():
 
-	with open('../data/working.csv', 'r') as f:
-		f = csv.reader(f)
-		next(f) # skip the header
-
-		for row in f:
-			price = float(row[indexOfPrice])
-			try:
-				val = 100*(fitModel(row) - price)/price
-				print val
-			except Exception as e:
-				error_file.write('Error in date item: ' + str(row) + '\n')
+	for row in trainingData:
+		price = float(row[indexOfPrice])
+		try:
+			val = 100*(fitModel(row) - price)/price
+			print val
+		except Exception as e:
+			error_file.write('Error in date item: ' + str(row) + '\n')
 
 testModel()

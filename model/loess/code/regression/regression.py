@@ -30,7 +30,7 @@ def weightF(p, q):
 indexOfLocality = ''
 indexOfPrice = ''
 
-with open('../data/working.csv') as f:
+with open('../../data/working.csv') as f:
 	
 	f = csv.reader(f)
 	header = next(f)	
@@ -70,8 +70,8 @@ def fitModel(testData = ['1778.8039396552','5756.1558987142','2071.7545255086','
 	return float(phi_x * beta)
 
 def testModel():
-	count = 0
-	with open('../data/working.csv', 'r') as f:
+	
+	with open('../../data/working.csv', 'r') as f:
 		f = csv.reader(f)
 		next(f) # skip the header
 
