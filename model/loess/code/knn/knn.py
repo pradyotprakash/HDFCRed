@@ -1,21 +1,23 @@
-import csv, pprint, math
+import csv, math
 import numpy as np
-from numpy.linalg import inv
 
 np.set_printoptions(threshold=np.nan)
 error_file = open('error_log_knn', 'w')
 
 k = 10
+r = 2.0
 
 trainingData = []
 header = []
 
-def distance(p, q):
+def geometricDistance(p, q):
 	x = 0.0
 	for i in range(len(p)):
 		x += ((p[i]) - (q[i]))**2
 
-	return x
+	if math.sqrt(x) <= r:
+		return True
+	else: return False	
 
 indexOfPrice = ''
 
@@ -28,7 +30,7 @@ with open('../../data/working.csv') as f:
 	indexOfPrice = header.index('price')
 
 	for row in f:
-		trainingData.append(map(float, row[:4] + row[6:]))
+		trainingData.append(map(float, row[:3] + [float(row[3])/10000000.0] + row[6:]))
 
 def fitModel(testData = ['1778.8039396552','5756.1558987142','2071.7545255086','16800000','26880','7','4','0','12','7','625','1','1','0','0','1','0','0','0','0','1','2']):
 	
@@ -50,10 +52,10 @@ def testModel():
 	for row in trainingData:
 		price = row[indexOfPrice]
 		try:
-			val = 100*(fitModel(row) - price)/price
+			x = fitModel(row)
+			val = 100*(x - price)/price
 			print val
 		except Exception as e:
 			error_file.write('Error in test item: ' + str(row) + '\n')
-
 
 testModel()
