@@ -1,4 +1,4 @@
-from sklearn.ensemble import BaggingRegressor
+from sklearn.ensemble import RandomForestRegressor
 from sklearn import cross_validation
 import csv
 
@@ -23,7 +23,7 @@ with open('../../../data/working1.csv') as f:
 
 X_train, X_test, y_train, y_test = cross_validation.train_test_split(data, target, test_size=0.1, random_state=0)
 
-ensemble = BaggingRegressor()
+ensemble = RandomForestRegressor()
 
 ensemble.fit(X_train, y_train)
 

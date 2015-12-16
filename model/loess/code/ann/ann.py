@@ -13,16 +13,17 @@ with open('../../data/working1.csv') as f:
 	header = next(f)	
 
 	for row in f:
-		price.append(row[3])
+		price.append(float(row[3]))
 		del row[3:5]
-		trainingData.append(row)
+		trainingData.append(map(float, row))
 
 ds = SupervisedDataSet(len(trainingData[0]), 1)
 
 for i in range(len(price)):
 	ds.addSample(trainingData[i], price[i])
 
-net = buildNetwork(len(trainingData[0]), 1, 1)
+net = buildNetwork(len(trainingData[0]), 20, 1)
 trainer = BackpropTrainer(net, ds)
 
-trainer.trainUntilConvergence(verbose=True, trainingData=ds,)
+trainer.train()
+print net.activate((1763.3538916308,5753.496311597,2092.2486098239,0,10000,4,3,0,3,0,450,1,1,0,0,0,1,0,0,0,0,0))
