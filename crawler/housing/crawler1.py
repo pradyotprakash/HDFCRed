@@ -24,7 +24,7 @@ def getAllCities():
 def func(city, link):
 	current_page_no = 1
 
-	header = ['id','latitude','longitude','price','city_name','locality','per_square_feet_rate','floor_count','floor_number','property_type','under_construction','date_added','available_from','apartment_type','age_of_property','age_of_property_date','main_entrance_facing','status','built_up_area','bedroom_count','bathroom_count','has_swimming_pool','has_gym','number_of_lifts','parking_count','has_gas_pipeline','water_supply_type','has_servant_room','power_backup_type','is_gated_community','security_type','is_society_formed','region_name','neighbourhood_score','for_resale']
+	header = ['id','latitude','longitude','price','city_name','locality','per_square_feet_rate','floor_count','floor_number','property_type','under_construction','date_added','available_from','apartment_type','age_of_property','age_of_property_date','main_entrance_facing','status','built_up_area','bedroom_count','bathroom_count','has_swimming_pool','has_gym','number_of_lifts','parking_count','has_gas_pipeline','water_supply_type','has_servant_room','power_backup_type','is_gated_community','security_type','is_society_formed','region_name','neighbourhood_score']
 
 	try:
 		response = br.open(link)
@@ -56,11 +56,9 @@ def func(city, link):
 			f.write(json_data)
 
 			data = {}
-			forResale = False
+			
 			try:
 				data = json.loads(json_data)['result']
-				if 'resale' in data['share_url']:
-					forResale = True
 			except Exception as e:
 				error_file.write('Exception ' + str(e) + ' while accessing entry ' + str(data_id) + ' on page ' + str(current_page_no) + '\n')
 			
@@ -239,15 +237,10 @@ def func(city, link):
 			output = [x.replace('False', '0') for x in output]
 			output = [x.replace('True', '1') for x in output]
 
-			if forResale:
-				data_file.writerow(output + ['1'])
-			else:
-				data_file.writerow(output + ['0'])
-
+			data_file.writerow(output)
 
 	while True:
 		soup = BeautifulSoup(response)
-
 		divs = soup.findAll('div', {'class' : 'list-resale'})
 
 		if not len(divs) == 0:
@@ -260,24 +253,25 @@ def func(city, link):
 			parseDataIds(data_ids)
 			print 'Received page: ' + str(current_page_no) + '. Total entries so far: ' + str(current_page_no*len(data_ids))
 			
-			# breaking condition
-			status_div_strong = soup.findAll('div', {'class' : 'status-bar'})[0].findAll('strong')
-
-			# print status_div_strong[0].text, status_div_strong[1].text, status_div_strong[2]self.text
-			if int(status_div_strong[1].text) >= int(status_div_strong[2].text):
-				break
 		else:
 			error_file.write('No data on page ' + str(current_page_no) + '. Skipping it!\n')
 
+		# breaking condition
+		status_div_strong = soup.findAll('div', {'class' : 'status-bar'})[0].findAll('strong')
+		if int(status_div_strong[1].text) >= int(status_div_strong[2].text):
+			break
+					
 		current_page_no += 1
 		try:
 			response = br.open(link + '?page=' + str(current_page_no))
-		except:
+		except Exception as e:
+			print e
 			print 'Unable to retrieve page %s. Stopped.' % str(current_page_no)
 
 if __name__ == '__main__':
 	d = getAllCities()
 	print str(len(d)) + ' cities to crawl!'
+	
 	for key in d:
 		print 'Starting crawling for ' + key + '...'
 		func(key, d[key])
