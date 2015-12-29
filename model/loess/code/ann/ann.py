@@ -26,4 +26,4 @@ net = buildNetwork(len(trainingData[0]), 20, 1)
 trainer = BackpropTrainer(net, ds)
 
 trainer.train()
-print net.activate((1763.3538916308,5753.496311597,2092.2486098239,0,10000,4,3,0,3,0,450,1,1,0,0,0,1,0,0,0,0,0))
+print net.activate((1763.3538916308,5753.496311597,2092.2486098239,0,4,3,0,3,0,450,1,1,0,0,0,1,0,0,0,0,0))
