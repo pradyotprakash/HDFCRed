@@ -1,0 +1,516 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>SAFAR - India</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin,latin-ext,vietnamese">
+    <link rel="stylesheet" href="assets/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="js/jquery-1.10.2.js"></script>
+    <script>
+    //jQuery.noConflict();
+    $(function() {
+        //$("form").jqTransform();
+        /* ----------for showing default text---------------*/
+        $(".defaultText").focus(function(srcc) {
+            if ($(this).val() == $(this)[0].title) {
+                $(this).removeClass("defaultTextActive");
+                $(this).val("");
+            }
+        });
+
+        $(".defaultText").blur(function() {
+            if ($(this).val() == "") {
+                $(this).addClass("defaultTextActive");
+                $(this).val($(this)[0].title);
+            }
+        });
+
+        $(".defaultText").blur();
+    });
+    </script>
+    <link rel="stylesheet" href="js/gallery/jquery.lightbox.css">
+    <script src="js/gallery/jquery.lightbox.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/jquery.popupoverlay.js" type="text/javascript"></script>
+    <link href="assets/ticker-style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/boo tstrap.min.css" />
+    <!-- bxSlider Javascript file -->
+    <script>
+    var js = $.noConflict();
+    js(function() {
+        //alert('hii');
+        js("#tabs").tabs({
+            event: "mouseover"
+        });
+        js('#active_bg').popup({
+            onopen: function() {
+                $.get("captcha.php", function(data) {
+                    //alert(data);
+                    $(".captcha_image").html(data);
+                });
+                $('.alert_fprm_div').show();
+                $('.alert_form_msg').hide();
+                // alert("1");
+                //$(".captcha_image").html('');
+                //$(".captcha_image").html('<img src="captcha.php" />');
+                document.getElementById("email_alerts").reset();
+            }
+        });
+        js('.photoGalleryListing a').lightbox();
+    });
+
+    function openPopup() {
+        js('#active_bg').popup('show');
+    }
+
+    function openPopup1() {
+        js('#active_bg2').popup('show');
+    }
+    </script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="assets/jquery.ticker.js" type="text/javascript"></script>
+    <script>
+    $(function() {
+        $('#js-news').ticker();
+    });
+    </script>
+</head>
+
+<body>
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-71180919-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+    <div class="global_container_">
+        <div style="height:10px; width:100%; background-color:#1BBC9B; ">&nbsp;</div>
+        <!-- Top Header-->
+        <!--<div class="topHeader">
+<div class="container">
+<div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse navbar-right">
+          <ul class="nav navbar-nav">
+                     <li><a href="#">Home</a></li>
+            <li><a href="#">About IITM </a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">FAQ's</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+          
+        </div>
+      </div>
+</div>
+</div>-->
+        <header class="header">
+            <div class="l-constrained group">
+                <div class="wrapper-12" onclick="document.location.href='index.php';" style="cursor:pointer">
+                    <img class="layer-1" src="images/layer_1.png" alt="IITM" title="IITM " width="83" height="83">
+                    <p class="iitm">IITM</p>
+                    <img class="layer-3" src="images/layer_3.png" alt="IMD" title="IMD " width="93" height="112">
+                    <img class="layer-4" src="images/layer_4.png" alt="ESSO" title="ESSO " width="83" height="99">
+                    <img class="vector-smart-object" src="images/vector_smart_object.png" alt="" width="317" height="19">
+                </div>
+                <div class="col-2">
+                    <p class="safar-india">SAFAR - India</p>
+                    <p class="system-of-air-quality-and"><span class="text-style-2"><span class="uline">S</span>ystem of <span class="uline">A</span>ir Quality and Weather <span class="uline">F</span>orecasting <span class="uline">A</span>nd <span class="uline">R</span>esearch</span>
+                        <br><span class="mar-top">Ministry of Earth Science, Govt. of India.</span>
+                        <br>Indian Institute of Tropical Meteorology, Pune</p>
+                </div>
+                <img class="layer-2" src="images/layer_2.png" alt="" width="70" height="auto">
+            </div>
+        </header>
+        <!-- Top Header End-->
+        <div class="main-content-wrapper">
+            <!-- Main Menu Start-->
+            <div class="menu">
+                <ul>
+                    <li class=""><a href="index.php?menu_id=1" target="_self">HOME</a></li>
+                    <li class=""><a href="ABOUT SAFAR-1-2-Details" target="_self">ABOUT SAFAR</a></li>
+                    <li class=""><a href="MONITORING SYSTEM-10-3-Details" target="_self">MONITORING SYSTEM</a></li>
+                    <li class=""><a href="FORECASTING-46-4-Details" target="_self">FORECASTING</a></li>
+                    <li class=""><a href="QA & QC-42-5-Details" target="_self">QA & QC</a></li>
+                    <li class=""><a href="PRODUCTS-21-6-Details" target="_self">PRODUCTS</a></li>
+                    <li class=""><a href="RESEARCH-14-7-Details" target="_self">RESEARCH</a></li>
+                    <li class=""><a href="media.php?menu_id=11" target="_self">Media</a></li>
+                    <li class=""><a href="CONTACT US-44-8-Details" target="_self">CONTACT US</a></li>
+                    <!--ul class="nav navbar-nav menuFont">
+                     </ul-->
+                    <!--/div>
+      </div-->
+                </ul>
+            </div>
+            <!-- Menu end-->
+            <table align="center" width="100%">
+                <tr align="center">
+                    <td align="center">
+                        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+                        <script type="text/javascript">
+                        var markers = [{
+                            "title": 'Bhandup',
+                            "lat": '19.16650',
+                            "lng": '72.9230',
+                            "description": '<table  width="250px" align="center" border="1" cellpadding="1" cellspacing="0" Title="Click to view details air quality of stationBhandup" style="cursor: pointer; border-collapse:collapse;border-color:Black;"><tr align="left"><td align="center"  style="white-space:nowrap;background-color:Gray;color:White; ">Bhandup</td></tr><tr><td align="center" colspan="3" style="white-space:nowrap;">Mon, Dec 21, 2015 12:54:00 pm</td></tr><tr><td><table width="250px" align="center" border="1" cellpadding="2" cellspacing="0" style="border-collapse:collapse;"><colgroup><col width="70px" /><col width="90px" /><col width="90px"/></colgroup><tr style="color:Maroon;"><td align="left"  >Pollutant</td><td align="center" colspan="2">AQI</td></tr><tr><td align="left" >PM10</td><td align="center" >217</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >PM2.5</td><td align="center" >228</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >NO2</td><td align="center" >91</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >CO</td><td align="center" >23</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >O3</td><td align="center" >71</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr></table></td></tr></table>'
+                        }, {
+                            "title": 'Colaba',
+                            "lat": '18.89806',
+                            "lng": '72.81269',
+                            "description": '<table  width="250px" align="center" border="1" cellpadding="1" cellspacing="0" Title="Click to view details air quality of stationColaba" style="cursor: pointer; border-collapse:collapse;border-color:Black;"><tr align="left"><td align="center"  style="white-space:nowrap;background-color:Gray;color:White; ">Colaba</td></tr><tr><td align="center" colspan="3" style="white-space:nowrap;">Mon, Dec 21, 2015 12:54:00 pm</td></tr><tr><td><table width="250px" align="center" border="1" cellpadding="2" cellspacing="0" style="border-collapse:collapse;"><colgroup><col width="70px" /><col width="90px" /><col width="90px"/></colgroup><tr style="color:Maroon;"><td align="left"  >Pollutant</td><td align="center" colspan="2">AQI</td></tr><tr><td align="left" >PM10</td><td align="center" >201</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >PM2.5</td><td align="center" >205</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >NO2</td><td align="center" >63</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >CO</td><td align="center" >46</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >O3</td><td align="center" >78</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr></table></td></tr></table>'
+                        }, {
+                            "title": 'Malad',
+                            "lat": '19.19709',
+                            "lng": '72.82204',
+                            "description": '<table  width="250px" align="center" border="1" cellpadding="1" cellspacing="0" Title="Click to view details air quality of stationMalad" style="cursor: pointer; border-collapse:collapse;border-color:Black;"><tr align="left"><td align="center"  style="white-space:nowrap;background-color:Gray;color:White; ">Malad</td></tr><tr><td align="center" colspan="3" style="white-space:nowrap;">Mon, Dec 21, 2015 12:54:00 pm</td></tr><tr><td><table width="250px" align="center" border="1" cellpadding="2" cellspacing="0" style="border-collapse:collapse;"><colgroup><col width="70px" /><col width="90px" /><col width="90px"/></colgroup><tr style="color:Maroon;"><td align="left"  >Pollutant</td><td align="center" colspan="2">AQI</td></tr><tr><td align="left" >PM10</td><td align="center" >241</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >PM2.5</td><td align="center" >277</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >NO2</td><td align="center" >183</td><td align="center" style="background-color:#F4F805;color:black;font-weight:bold;border-bottom-color:Black">Moderate</td></tr><tr><td align="left" >CO</td><td align="center" >9</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >O3</td><td align="center" >46</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr></table></td></tr></table>'
+                        }, {
+                            "title": 'Mazagaon',
+                            "lat": '18.96702',
+                            "lng": '72.84214',
+                            "description": '<table  width="250px" align="center" border="1" cellpadding="1" cellspacing="0" Title="Click to view details air quality of stationMazagaon" style="cursor: pointer; border-collapse:collapse;border-color:Black;"><tr align="left"><td align="center"  style="white-space:nowrap;background-color:Gray;color:White; ">Mazagaon</td></tr><tr><td align="center" colspan="3" style="white-space:nowrap;">Mon, Dec 21, 2015 12:54:00 pm</td></tr><tr><td><table width="250px" align="center" border="1" cellpadding="2" cellspacing="0" style="border-collapse:collapse;"><colgroup><col width="70px" /><col width="90px" /><col width="90px"/></colgroup><tr style="color:Maroon;"><td align="left"  >Pollutant</td><td align="center" colspan="2">AQI</td></tr><tr><td align="left" >PM10</td><td align="center" >147</td><td align="center" style="background-color:#F4F805;color:black;font-weight:bold;border-bottom-color:Black">Moderate</td></tr><tr><td align="left" >PM2.5</td><td align="center" >203</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >NO2</td><td align="center" >171</td><td align="center" style="background-color:#F4F805;color:black;font-weight:bold;border-bottom-color:Black">Moderate</td></tr><tr><td align="left" >CO</td><td align="center" >15</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >O3</td><td align="center" >70</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr></table></td></tr></table>'
+                        }, {
+                            "title": 'Worali',
+                            "lat": '19.01747',
+                            "lng": '72.81751',
+                            "description": '<table  width="250px" align="center" border="1" cellpadding="1" cellspacing="0" Title="Click to view details air quality of stationWorali" style="cursor: pointer; border-collapse:collapse;border-color:Black;"><tr align="left"><td align="center"  style="white-space:nowrap;background-color:Gray;color:White; ">Worali</td></tr><tr><td align="center" colspan="3" style="white-space:nowrap;">Mon, Dec 21, 2015 12:54:00 pm</td></tr><tr><td><table width="250px" align="center" border="1" cellpadding="2" cellspacing="0" style="border-collapse:collapse;"><colgroup><col width="70px" /><col width="90px" /><col width="90px"/></colgroup><tr style="color:Maroon;"><td align="left"  >Pollutant</td><td align="center" colspan="2">AQI</td></tr><tr><td align="left" >PM10</td><td align="center" >190</td><td align="center" style="background-color:#F4F805;color:black;font-weight:bold;border-bottom-color:Black">Moderate</td></tr><tr><td align="left" >PM2.5</td><td align="center" >210</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >NO2</td><td align="center" >47</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >CO</td><td align="center" >28</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >O3</td><td align="center" >70</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr></table></td></tr></table>'
+                        }, {
+                            "title": 'Borivali',
+                            "lat": '19.23241',
+                            "lng": '72.86895',
+                            "description": '<table  width="250px" align="center" border="1" cellpadding="1" cellspacing="0" Title="Click to view details air quality of stationBorivali" style="cursor: pointer; border-collapse:collapse;border-color:Black;"><tr align="left"><td align="center"  style="white-space:nowrap;background-color:Gray;color:White; ">Borivali</td></tr><tr><td align="center" colspan="3" style="white-space:nowrap;">Mon, Dec 21, 2015 12:54:00 pm</td></tr><tr><td><table width="250px" align="center" border="1" cellpadding="2" cellspacing="0" style="border-collapse:collapse;"><colgroup><col width="70px" /><col width="90px" /><col width="90px"/></colgroup><tr style="color:Maroon;"><td align="left"  >Pollutant</td><td align="center" colspan="2">AQI</td></tr><tr><td align="left" >PM10</td><td align="center" >211</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >PM2.5</td><td align="center" >234</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >NO2</td><td align="center" >77</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >CO</td><td align="center" >3</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >O3</td><td align="center" >67</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr></table></td></tr></table>'
+                        }, {
+                            "title": 'BKC',
+                            "lat": '19.053536',
+                            "lng": '72.84643',
+                            "description": '<table  width="250px" align="center" border="1" cellpadding="1" cellspacing="0" Title="Click to view details air quality of stationBKC" style="cursor: pointer; border-collapse:collapse;border-color:Black;"><tr align="left"><td align="center"  style="white-space:nowrap;background-color:Gray;color:White; ">BKC</td></tr><tr><td align="center" colspan="3" style="white-space:nowrap;">Mon, Dec 21, 2015 12:54:00 pm</td></tr><tr><td><table width="250px" align="center" border="1" cellpadding="2" cellspacing="0" style="border-collapse:collapse;"><colgroup><col width="70px" /><col width="90px" /><col width="90px"/></colgroup><tr style="color:Maroon;"><td align="left"  >Pollutant</td><td align="center" colspan="2">AQI</td></tr><tr><td align="left" >PM10</td><td align="center" >202</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >PM2.5</td><td align="center" >216</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >NO2</td><td align="center" >124</td><td align="center" style="background-color:#F4F805;color:black;font-weight:bold;border-bottom-color:Black">Moderate</td></tr><tr><td align="left" >CO</td><td align="center" >35</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >O3</td><td align="center" >31</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr></table></td></tr></table>'
+                        }, {
+                            "title": 'Chembur',
+                            "lat": '19.04946',
+                            "lng": '72.9162',
+                            "description": '<table  width="250px" align="center" border="1" cellpadding="1" cellspacing="0" Title="Click to view details air quality of stationChembur" style="cursor: pointer; border-collapse:collapse;border-color:Black;"><tr align="left"><td align="center"  style="white-space:nowrap;background-color:Gray;color:White; ">Chembur</td></tr><tr><td align="center" colspan="3" style="white-space:nowrap;">Mon, Dec 21, 2015 12:54:00 pm</td></tr><tr><td><table width="250px" align="center" border="1" cellpadding="2" cellspacing="0" style="border-collapse:collapse;"><colgroup><col width="70px" /><col width="90px" /><col width="90px"/></colgroup><tr style="color:Maroon;"><td align="left"  >Pollutant</td><td align="center" colspan="2">AQI</td></tr><tr><td align="left" >PM10</td><td align="center" >278</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >PM2.5</td><td align="center" >280</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >NO2</td><td align="center" >89</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >CO</td><td align="center" >21</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >O3</td><td align="center" >94</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr></table></td></tr></table>'
+                        }, {
+                            "title": 'Andheri',
+                            "lat": '19.11074',
+                            "lng": '72.86084',
+                            "description": '<table  width="250px" align="center" border="1" cellpadding="1" cellspacing="0" Title="Click to view details air quality of stationAndheri" style="cursor: pointer; border-collapse:collapse;border-color:Black;"><tr align="left"><td align="center"  style="white-space:nowrap;background-color:Gray;color:White; ">Andheri</td></tr><tr><td align="center" colspan="3" style="white-space:nowrap;">Mon, Dec 21, 2015 12:54:00 pm</td></tr><tr><td><table width="250px" align="center" border="1" cellpadding="2" cellspacing="0" style="border-collapse:collapse;"><colgroup><col width="70px" /><col width="90px" /><col width="90px"/></colgroup><tr style="color:Maroon;"><td align="left"  >Pollutant</td><td align="center" colspan="2">AQI</td></tr><tr><td align="left" >PM10</td><td align="center" >237</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >PM2.5</td><td align="center" >259</td><td align="center" style="background-color:#F58F09;color:White;font-weight:bold;border-bottom-color:Black">Poor</td></tr><tr><td align="left" >NO2</td><td align="center" >60</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >CO</td><td align="center" >36</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr><tr><td align="left" >O3</td><td align="center" >37</td><td align="center" style="background-color:#377A07;color:White;font-weight:bold;border-bottom-color:Black">Good</td></tr></table></td></tr></table>'
+                        }];
+                        </script>
+                        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+                        <script type="text/javascript">
+                        google.load("visualization", "1", {
+                            packages: ["corechart"]
+                        });
+                        window.onload = function() {
+                            var mapOptions = {
+                                center: new google.maps.LatLng(19.05051, 72.86924),
+                                zoom: 12,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+                            };
+                            /* === old working code
+            var infoWindow = new google.maps.InfoWindow();
+            var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+            for (i = 0; i < markers.length; i++) {
+                var data = markers[i]
+                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+        //alert(data.title);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: data.title
+                });
+        
+        */
+
+                            var infoWindow = new google.maps.InfoWindow();
+                            var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+                            var imgno = 0;
+                            station_array = ["Bhandup", "Colaba", "Malad", "Mazagaon", "Worali", "Borivali", "BKC", "Chembur", "Andheri"];
+
+                            color_array = [
+                                "Poor", "Poor", "Poor", "Poor", "Poor", "Poor", "Poor", "Poor", "Poor"
+                            ]
+                            for (i = 0; i < markers.length; i++) {
+                                var data = markers[i]
+                                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+                                imageno = i + 1;
+                                // if (imageno !== 10) {
+                                var marker = new google.maps.Marker({
+                                    position: myLatlng,
+                                    map: map,
+                                    icon: "images/stations/Mumbai/" + color_array[i] + "/" + station_array[i] + ".png",
+                                    title: data.title
+                                });
+                                //  }
+
+                                (function(marker, data) {
+                                    google.maps.event.addListener(marker, "click", function(e) {
+                                        infoWindow.setContent(data.description);
+                                        infoWindow.open(map, marker);
+                                    });
+                                })(marker, data);
+                            }
+                        }
+
+                        /*function showAllMaps(station_id, stn_name)
+        {
+            //alert(station_id);
+      
+            $(".moreMaps").html('<center><h1>Loading.....</h1></center>');
+            var dataC="action=getMaps&station_id="+station_id+'&city=2';
+            $.ajax({
+                    url: "map_data_process.php", type: "post", data: dataC, cache: false,
+                    success: function (html)
+                            {
+                                //alert(html);
+                                $(".moreMaps").html(html);
+                                
+                                drawChart1();
+                                drawChart2();
+                drawChart4();
+                drawChart6();
+                drawChart8();
+                                
+                                $('#windrose3').highcharts({
+                                    data: {
+                                        table: 'freq1',
+                                        startRow: 1,
+                                        endRow: 17,
+                                        endColumn: 7
+                                    },
+
+                                    chart: {
+                                        polar: true,
+                                        type: 'column'
+                                    },
+
+                                    title: {
+                                        text: 'Wind Rose for '+stn_name
+                                    },
+
+
+
+                                    pane: {
+                                        size: '80%'
+                                    },
+
+                                    legend: {
+                                        reversed: true,
+                                        align: 'right',
+                                        verticalAlign: 'top',
+                                        y: 100,
+                                        layout: 'vertical'
+                                    },
+
+                                    xAxis: {
+                                        tickmarkPlacement: 'on'
+                                    },
+
+                                    yAxis: {
+                                        min: 0,
+                                        endOnTick: false,
+                                        showLastLabel: true,
+                                        title: {
+                                            text: 'Direction '
+                                        },
+                                        labels: {
+                                            formatter: function () {
+                                                return this.value + '';
+                                            }
+                                        }
+                                    },
+
+                                    tooltip: {
+                                        valueSuffix: 'm/s'
+                                    },
+
+                                    plotOptions: {
+                                        series: {
+                                            stacking: 'normal',
+                                            shadow: false,
+                                            groupPadding: 0,
+                                            pointPlacement: 'on'
+                                        }
+                                    }
+                                });
+                                
+                               
+                               
+                            }
+                    });
+        }*/
+
+                        function redirects(city_id) {
+                            document.location.href = "map_data.php?for=current&city_id=" + city_id;
+                        }
+
+                        function redirectme(valss) {
+                            document.location.href = valss;
+                        }
+                        </script>
+                        <div align="center">
+                            <table align="center">
+                                <tr align="center">
+                                    <td align="center">
+                                        <span id="ctl00_ContentPlaceHolder1_lblMsg"><b><font color="Red"></font></b></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+                            <table align="center" cellpadding="0" cellspacing="0" width="100%" class="tbl_Main" style="border-spacing:0px !important;">
+                                <tr>
+                                    <td>&nbsp;
+                                    </td>
+                                </tr>
+                                <tr align="center">
+                                    <td align="center">
+                                        <p align="center">
+                                            <div style="float:left; width:60%;">
+                                                <span style="font-size:22px; color:#03C; padding-left:25%">Air Quality Status - Mumbai </span>
+                                            </div>
+                                            <div style="float:right; width:40%;">
+                                                <span style="text-align:right">Switch to City:
+                        <select name="city_id" onChange="redirects(this.value);">
+                        <option value='3' >Delhi</option><option value='1' >Pune</option><option value='2'  selected="selected" >Mumbai</option>                        </select>
+                         &nbsp;&nbsp; Go To:
+                                                  
+                        <select name="redirct" onChange="redirectme(this.value);">
+                        <option value="map_data.php?city_id=2&for=current" selected='selected'>Air Quality</option>
+                        <option value="weather-forecast-current.php?city_id=2&for=current"  >Weather Now & Forecast</option>
+                        <option value="uv-current.php?city_id=2&for=current"  >UV Radiation</option>
+                        </select>
+                        </span>
+                                            </div>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;
+                                    </td>
+                                </tr>
+                                <style>
+                                .active_class {
+                                    color: #FFF;
+                                    text-decoration: none;
+                                    height: 25px;
+                                    text-align: center;
+                                    background: #1bbc9b;
+                                }
+                                
+                                .active_class span {
+                                    margin-top: 5px;
+                                }
+                                </style>
+                                <tr>
+                                    <td>
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing:0px !important;">
+                                            <tr>
+                                                <td align="center" width="50%" valign="middle">
+                                                    <div class="active_class"><span><a href="map_data.php?for=current&city_id=2"><u>AQI Current</u></a></span></div>
+                                                </td>
+                                                <td align="center" width="50%">
+                                                    <div><span><a href="map_data.php?for=forcast_tomorrow&city_id=2"><u>Tomorrow's Forecast</u></a></span></div>
+                                                </td>
+                                                <!--
+                            <td width="50%" align="center"><b>Other Stations Of Mumbai 
+                            
+                                                          
+                            <select name="stations" onChange="showAllMaps(this.value,this.options[this.selectedIndex].text);">
+                            <option value='23'  >Bhandup</option><option value='24'  >Colaba</option><option value='25'  >Malad</option><option value='26'  >Mazagaon</option><option value='27'  >Worali</option><option value='28'  >Borivali</option><option value='29'  >BKC</option><option value='30'  selected='selected'  >Chembur</option><option value='31'  >Andheri</option>                             </select>
+                             </b> </td>
+                             -->
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="100%" style="border-spacing:0px !important;">
+                                            <tr>
+                                                <td style="width: 90%; vertical-align: top;" align="center">
+                                                    <fieldset style="width: 100%; border: solid 1px black">
+                                                        <div id="dvMap" style="min-height: 900px;">
+                                                        </div>
+                                                    </fieldset>
+                                                </td>
+                                                <!-- <td style="width: 50%" class="moreMaps">
+                                
+                            </td>-->
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" width="90%">
+                        <table align="center" style="height: 40px; border-spacing:0px !important;" width="80%" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td align="center" style="background-color: #377a07; border: 1px Solid Black; font-weight: bold;
+                                            color: White; width:20%">
+                                    Good
+                                </td>
+                                <td align="center" style="background-color: #f4f805; border: 1px Solid Black; font-weight: bold ;width:20%">
+                                    Moderate
+                                </td>
+                                <td align="center" style="background-color: #f58f09; border: 1px Solid Black; font-weight: bold;
+                                            color: White ;width:20%">
+                                    Poor
+                                </td>
+                                <td align="center" style="background-color: #c41206; border: 1px Solid Black; font-weight: bold;
+                                            color: White ;width:20%">
+                                    Very&nbsp;Poor
+                                </td>
+                                <td align="center" style="background-color: #810100; border: 1px Solid Black; font-weight: bold;
+                                            color: White ;width:20%">
+                                    Severe
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <footer class="footer">
+                <div class="footer-2">
+                    <div class="l-constrained-6 group">
+                        <div class="home-photo-gallery-events">
+                            <a href="index.php?menu_id=1" target="_self">HOME</a>&nbsp;| &nbsp;<a href="gallary.php?menu_id=9" target="_self">Photo Gallery</a>&nbsp;| &nbsp;<a href="events.php?menu_id=10" target="_self">Events</a>
+                        </div>
+                        <div class="home-photo-gallery-events" style="float: right;">Copyright © Indian Institute of Tropical Meteorology, Pune
+                            <p style="  float:right;  margin-left: 10px;">
+                                <a href="#"><img src="images/fb.png"></a>
+                                <a href="#"><img src="images/tw.png"></a>
+                                <a href="#"><img src="images/in.png"></a>
+                                <a href="#"><img src="images/g1.png"></a>
+                                <!-- hitwebcounter Code START -->
+                                <img src="http://hitwebcounter.com/counter/counter.php?page=6246869&style=0006&nbdigits=5&type=ip&initCount=1000" title="install tracking codes" Alt="install tracking codes" border="0">
+                                <!-- hitwebcounter.com -->
+                                <span style="display:none"><a href="http://www.hitwebcounter.com" title="Visitors Total" 
+                                        target="_blank" style="font-family: Geneva, Arial, Helvetica; 
+                                        font-size: 9px; color: #9C9795; text-decoration: none ;"><strong>Visitors Total                                        </strong>
+                                        </a>   </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
