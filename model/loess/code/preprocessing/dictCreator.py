@@ -3,7 +3,7 @@ import csv
 def creator(currentAttribute = 'apartment_type'):
 	current = 0
 
-	f = csv.reader(open('../data/training.csv'))
+	f = csv.reader(open('../../data/training.csv'))
 	d = {}
 
 	header = next(f)
