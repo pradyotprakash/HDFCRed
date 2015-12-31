@@ -47,8 +47,16 @@ def getter(latitude, longitude, radius, type_, APIKey, f):
 		l = [result['name'], distance(float(latitude), float(longitude), lat, lng)]
 		# f.writerow(l)
 	f.writerow([latitude, longitude, type_, count])
-		
-f = csv.writer(open('data.csv', 'a'))
-getter('19.13105', '72.90767', 500, 'food', 'AIzaSyBLdHwDMmlqX-eAcM_gCDsmaTFAXZJF8uQ', f)
 
-# food, 
+def doEverything(lat, lon, radius, f):
+	getter(lat, lon, radius, 'food', 'AIzaSyBLdHwDMmlqX-eAcM_gCDsmaTFAXZJF8uQ', f)
+	getter(lat, lon, radius, 'shopping_mall', 'AIzaSyBLdHwDMmlqX-eAcM_gCDsmaTFAXZJF8uQ', f)
+	getter(lat, lon, radius, 'hospital', 'AIzaSyBLdHwDMmlqX-eAcM_gCDsmaTFAXZJF8uQ', f)
+	getter(lat, lon, radius, 'bus_station', 'AIzaSyBLdHwDMmlqX-eAcM_gCDsmaTFAXZJF8uQ', f)
+	getter(lat, lon, radius, 'train_station', 'AIzaSyBLdHwDMmlqX-eAcM_gCDsmaTFAXZJF8uQ', f)
+	getter(lat, lon, radius, 'school', 'AIzaSyBLdHwDMmlqX-eAcM_gCDsmaTFAXZJF8uQ', f)
+	getter(lat, lon, radius, 'park', 'AIzaSyBLdHwDMmlqX-eAcM_gCDsmaTFAXZJF8uQ', f)
+
+if __name__ == '__main__':
+	f = csv.writer(open('data.csv', 'a'))	
+	doEverything('19.13105', '72.90767', 500, f)
